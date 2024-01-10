@@ -45,11 +45,11 @@ let winner = () => {
 let game = () => {
 	let p = 0
 	let c = 0
-	for (var i=0; i<5; i++) {
+	//for (var i=0; i<5; i++) {
 		let w = winner()
 		if (w === 1) c++
 		if (w === 0) p++
-	}
+	//}
 	console.log(p)
 	console.log(c)
 	if (p > c) console.log("You won the game")
