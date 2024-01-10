@@ -1,60 +1,70 @@
-
-
-
 let getComputerChoice = () => {
-	const choices = ["ROCK", "PAPER", "SCISSORS"]
-	return choices[Math.floor(Math.random()*choices.length)]
-}
+    const choices = ["ROCK", "PAPER", "SCISSORS"];
+    return choices[Math.floor(Math.random() * choices.length)];
+};
 
-let getPlayerChoice = () => {
-	let choice = prompt("Choose Rock, Paper, or Scissors").toUpperCase()
-	return choice
-}
-
-let winner = () => {
-	let p = getPlayerChoice()
-	let c = getComputerChoice()
-	console.log(`Computer chose ${c}`);
-	if (p === c) console.log("TIE")
-	else if (p === "ROCK" && c === "PAPER") {
-		console.log("Computer Wins")
-		return 1
-	}
-	else if (p === "ROCK" && c === "SCISSORS") {
-		console.log("You Win")
-		return 0
-	}
-	else if (p === "PAPER" && c === "ROCK") {
-		console.log("You Win")
-		return 0
-	}
-	else if (p === "PAPER" && c === "SCISSORS") {
-		console.log("Computer Wins")
-		return 1
-	}
-	else if (p === "SCISSORS" && c === "ROCK") {
-		console.log("Computer Wins")
-		return 1
-	}
-	else if (p === "SCISSORS" && c === "PAPER") {
-		console.log("You win")
-		return 0
-	}
-}
+let winner = (p, c) => {
+    if (p === c) {
+        return { result: "TIE", winner: 2 }; // Tie
+    } else if ((p === "ROCK" && c === "PAPER") ||
+               (p === "PAPER" && c === "SCISSORS") ||
+               (p === "SCISSORS" && c === "ROCK")) {
+        return { result: "Computer Wins", winner: 1 }; // Computer wins
+    } else {
+        return { result: "You Win", winner: 0 }; // Player wins
+    }
+};
 
 let game = () => {
-	let p = 0
-	let c = 0
-	//for (var i=0; i<5; i++) {
-		let w = winner()
-		if (w === 1) c++
-		if (w === 0) p++
-	//}
-	console.log(p)
-	console.log(c)
-	if (p > c) console.log("You won the game")
-	else if (p < c) console.log("You Lost the game")
-	else console.log("Tie")
-}
-game()
+    let p = 0;
+    let c = 0;
 
+    document.querySelectorAll('.btn').forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+            let playerChoice = event.currentTarget.getAttribute('id');
+            document.getElementById('choices').innerHTML = `You chose ${playerChoice}`;
+
+            let computerChoice = getComputerChoice();
+            document.getElementById('choices').innerHTML += `<br>Computer chose ${computerChoice}`;
+
+            let roundResult = winner(playerChoice, computerChoice);
+
+            if (roundResult.winner === 1) {
+                c++;
+            } else if (roundResult.winner === 0) {
+                p++;
+            }
+
+            document.getElementById('score').innerHTML = `Player: ${p}, Computer: ${c}`;
+            document.getElementById('outcome').innerHTML = roundResult.result;
+
+            if (p === 5 || c === 5) {
+                endGame(roundResult.result);
+            }
+        });
+    });
+
+    let endGame = (result) => {
+        if (p > c) {
+            document.getElementById('winner').innerHTML = "You won the game!";
+        } else if (p < c) {
+            document.getElementById('winner').innerHTML = "You lost the game!";
+        } else {
+            document.getElementById('winner').innerHTML = "It's a tie!";
+        }
+
+        document.getElementById('outcome').innerHTML = `Game Over. ${result}`;
+
+        // You can add any additional logic or reset the game if needed
+    };
+};
+
+game();
+
+
+
+//TODO//
+/* 
+	after someone wins end game
+	add a restart button
+*/

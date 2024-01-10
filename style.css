@@ -1,4 +1,4 @@
-* {
+/** {
 	background-color: black;
 }
 
@@ -40,17 +40,115 @@ header {
 	height: 5vh;
 }
 
-#btn1 {
+#ROCK {
 	background-image: url('imgs/rock.jpg');
 	background-size: 10vh 5vh;
 }
 
-#btn2 {
+#PAPER {
 	background-image: url('imgs/paper.png');
 	background-size: 10vh 5vh;
 }
 
-#btn3 {
+#SCISSORS {
 	background-image: url('imgs/scissors.png');
 	background-size: 10vh 5vh;
+}
+
+#winner {
+	background-color: orange;
+}
+
+.results {
+	background-color: orange;
+}*/
+
+* {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#title {
+    font-size: 50px;
+    color: orange;
+}
+
+#gameContainer {
+    margin: 20px auto;
+    width: 60vh;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: orange;
+    border-radius: 10px;
+}
+
+#btnContainer {
+    margin-top: 20px;
+    height: 5vh;
+    width: 60vh;
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: orange;
+}
+
+.btn {
+    width: 10vh;
+    height: 5vh;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+#ROCK {
+    background-image: url('imgs/rock.jpg');
+    background-size: 10vh 5vh;
+}
+
+#PAPER {
+    background-image: url('imgs/paper.png');
+    background-size: 10vh 5vh;
+}
+
+#SCISSORS {
+    background-image: url('imgs/scissors.png');
+    background-size: 10vh 5vh;
+}
+
+#winner, #outcome, #score, #choices {
+    background-color: orange;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: black;
+}
+
+.results {
+    background-color: orange;
 }
